@@ -2,350 +2,202 @@
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>个人简历 - 小玖吖</title>
+    <title>个人简历</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
+        /* 整体背景与字体 */
         body {
-            font-family: 'Segoe UI', 'Microsoft YaHei', Arial, sans-serif;
-            background: linear-gradient(135deg, #e0f7fa 0%, #bbdefb 100%);
+            margin: 0;
+            font-family: "Microsoft YaHei", sans-serif;
+            background: #e0f7fa;
             padding: 20px;
-            line-height: 1.6;
-            min-height: 100vh;
         }
-        
+
+        /* 大白卡片 */
         .resume-container {
             max-width: 800px;
             margin: 0 auto;
-            background: rgba(255, 255, 255, 0.85);
-            backdrop-filter: blur(10px);
-            border-radius: 16px;
-            box-shadow: 0 8px 32px rgba(31, 38, 135, 0.15);
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
             overflow: hidden;
-            border: 1px solid rgba(255, 255, 255, 0.5);
         }
-        
+
+        /* 顶部蓝条 */
         .resume-header {
-            background: linear-gradient(135deg, #1a237e 0%, #283593 100%);
-            color: white;
-            padding: 40px;
+            background: #1a237e;
+            color: #fff;
             text-align: center;
-            position: relative;
-            overflow: hidden;
+            padding: 30px 0;
         }
-        
-        .resume-header::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
-            transform: rotate(30deg);
-        }
-        
         .resume-header h1 {
-            font-size: 36px;
-            margin-bottom: 10px;
-            font-weight: 300;
-            position: relative;
-            letter-spacing: 1px;
-        }
-        
-        .resume-header p {
-            font-size: 18px;
-            opacity: 0.9;
-            position: relative;
+            margin: 0;
+            font-size: 42px;
+            letter-spacing: 6px;
             font-weight: 300;
         }
-        
+
+        /* 内容区 */
         .resume-content {
-            padding: 40px;
-        }
-        
-        .section {
-            margin-bottom: 30px;
-        }
-        
-        .section-title {
-            font-size: 20px;
-            color: #1a237e;
-            margin-bottom: 15px;
-            padding-bottom: 10px;
-            border-bottom: 2px solid #5c6bc0;
-            font-weight: 500;
+            padding: 30px 40px 40px;
             position: relative;
         }
-        
-        .section-title::after {
-            content: '';
+
+        /* 证件照 - 直接放右边，上压一点分界线 */
+        .id-photo {
             position: absolute;
-            bottom: -2px;
-            left: 0;
-            width: 60px;
-            height: 2px;
-            background: #3949ab;
+            top: -25px;
+            right: 40px;
+            width: 120px;
+            height: 150px;
+            border: 3px solid #fff;
+            border-radius: 6px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+            overflow: hidden;
+            background: #fff;
         }
-        
+        .id-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        /* 每一大段 */
+        .section {
+            margin-bottom: 25px;
+        }
+        .section-title {
+            font-size: 18px;
+            color: #1a237e;
+            border-bottom: 2px solid #5c6bc0;
+            padding-bottom: 6px;
+            margin-bottom: 10px;
+        }
+
+        /* 基本信息两列 */
         .info-grid {
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 15px;
-            margin-bottom: 20px;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            padding-right: 140px; /* 给照片留空 */
         }
-        
         .info-item {
-            display: flex;
-            align-items: center;
-            padding: 10px;
-            background: rgba(236, 239, 241, 0.5);
-            border-radius: 8px;
-            transition: transform 0.3s ease;
+            background: #f5f7fa;
+            padding: 8px 10px;
+            border-radius: 4px;
         }
-        
-        .info-item:hover {
-            transform: translateY(-3px);
-            background: rgba(207, 216, 220, 0.3);
-        }
-        
         .info-item strong {
             color: #1a237e;
-            margin-right: 10px;
-            min-width: 60px;
-            font-weight: 500;
+            margin-right: 8px;
         }
-        
-        .education-item, .experience-item {
-            background: rgba(255, 255, 255, 0.7);
-            padding: 20px;
-            border-radius: 8px;
-            margin-bottom: 15px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.03);
-            transition: all 0.3s ease;
-            border-left: 4px solid #5c6bc0;
-        }
-        
-        .education-item:hover, .experience-item:hover {
-            box-shadow: 0 6px 12px rgba(0,0,0,0.08);
-            transform: translateY(-2px);
-        }
-        
-        .education-item h4, .experience-item h4 {
-            color: #283593;
-            margin-bottom: 8px;
-            font-weight: 500;
-        }
-        
-        .skills-container {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-        }
-        
-        .skill-tag {
-            background: linear-gradient(135deg, #3949ab 0%, #5c6bc0 100%);
-            color: white;
-            padding: 8px 16px;
-            border-radius: 20px;
-            font-size: 14px;
-            transition: all 0.3s ease;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        }
-        
-        .skill-tag:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 8px rgba(0,0,0,0.15);
-        }
-        
-        .campus-list, .self-evaluation {
-            background: rgba(255, 255, 255, 0.7);
-            padding: 20px;
-            border-radius: 8px;
+
+        /* 教育、项目、技能、自我评价 简单白块 */
+        .simple-box {
+            background: #fafbfc;
+            padding: 15px;
+            border-radius: 4px;
             line-height: 1.8;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.03);
         }
-        
-        .campus-list ul {
-            list-style-position: inside;
-            color: #37474f;
+        .simple-box ul {
+            margin: 8px 0 0 20px;
         }
-        
-        .campus-list li {
-            margin-bottom: 10px;
-            padding-left: 10px;
-            border-left: 2px solid #c5cae9;
+
+        /* 技能段 */
+        .skill-line {
+            margin: 6px 0;
         }
-        
-        .self-evaluation {
-            text-align: justify;
-            color: #455a64;
-            font-style: italic;
-            border-left: 4px solid #7986cb;
+        .skill-line strong {
+            color: #1a237e;
         }
-        
+
+        /* 小屏幕简化 */
         @media (max-width: 600px) {
             .info-grid {
                 grid-template-columns: 1fr;
+                padding-right: 0;
             }
-            
-            .resume-header h1 {
-                font-size: 28px;
-            }
-            
-            .resume-content {
-                padding: 20px;
+            .id-photo {
+                width: 90px;
+                height: 112px;
+                right: 20px;
+                top: -20px;
             }
         }
     </style>
 </head>
 <body>
     <div class="resume-container">
+        <!-- 顶部标题 -->
         <div class="resume-header">
-            <h1>小玖吖</h1>
-            <p>细心从每一个小细节开始</p>
+            <h1>个人简历</h1>
         </div>
-        
+
+        <!-- 主体内容 -->
         <div class="resume-content">
-            <!-- 基本信息 -->
+            <!-- ============== 证件照（只换 src 即可） ============== -->
+            <div class="id-photo">
+                <!-- 把你的照片地址填到 src 里 -->
+                <img src="你的证件照URL" alt="证件照">
+            </div>
+
+            <!-- ============== 基本信息 ============== -->
             <div class="section">
-                <h2 class="section-title">基本信息</h2>
+                <div class="section-title">基本信息</div>
                 <div class="info-grid">
-                    <div class="info-item">
-                        <strong>姓名：</strong>
-                        <span>小玖吖</span>
-                    </div>
-                    <div class="info-item">
-                        <strong>性别：</strong>
-                        <span>女</span>
-                    </div>
-                    <div class="info-item">
-                        <strong>籍贯：</strong>
-                        <span>江西南昌</span>
-                    </div>
-                    <div class="info-item">
-                        <strong>年龄：</strong>
-                        <span>22岁</span>
-                    </div>
-                    <div class="info-item">
-                        <strong>民族：</strong>
-                        <span>汉族</span>
-                    </div>
-                    <div class="info-item">
-                        <strong>出生年月：</strong>
-                        <span>2000.8.2</span>
-                    </div>
-                    <div class="info-item">
-                        <strong>政治面貌：</strong>
-                        <span>团员</span>
-                    </div>
-                    <div class="info-item">
-                        <strong>电话：</strong>
-                        <span>18122222222</span>
-                    </div>
+                    <div class="info-item"><strong>姓名：</strong>陈品任</div>
+                    <div class="info-item"><strong>性别：</strong>男</div>
+                    <div class="info-item"><strong>籍贯：</strong>广东省雷州市</div>
+                    <div class="info-item"><strong>出生年月：</strong>2002.5.20</div>
+                    <div class="info-item"><strong>电话：</strong>13692366243</div>
+                    <div class="info-item"><strong>邮箱：</strong>ch3326@qq.com</div>
+                    <div class="info-item" style="grid-column:1/-1"><strong>求职意向：</strong>Web前端开发实习生（应届毕业生）</div>
                 </div>
             </div>
-            
-            <!-- 教育背景 -->
+
+            <!-- ============== 教育背景 ============== -->
             <div class="section">
-                <h2 class="section-title">教育背景</h2>
-                <div class="education-item">
-                    <h4>XXXX学院 | 市场营销专业 本科</h4>
-                    <p>20XX.9 - 20XX.6</p>
-                    <p>主修课程：市场调查、市场分析、销售策划、生产决策、市场定位、现代推销技术、营销创新、广告理论与实务等课程。</p>
+                <div class="section-title">教育背景</div>
+                <div class="simple-box">
+                    <b>广东交通职业技术学院</b>　软件技术专业　专科　2023.9 – 2026.6<br>
+                    主修课程：JavaScript程序设计、JavaWeb程序设计、程序设计基础、数据结构、数据库技术、移动应用开发、计算机网络基础、云计算导论、人工智能技术导论、UML建模技术、Linux操作系统管理与应用、微信开发、网页设计基础、响应式网页设计、Web前端开发框架(Vue.js)、信息技术基础
                 </div>
             </div>
-            
-            <!-- 校园经历 -->
+
+            <!-- ============== 项目经验 ============== -->
             <div class="section">
-                <h2 class="section-title">校园经历</h2>
-                <div class="campus-list">
+                <div class="section-title">项目经验</div>
+                <div class="simple-box">
+                    <b>在线图书订购页面（课程实训项目）</b><br>
+                    技术栈：HTML5 + CSS3<br>
+                    项目描述：一个专注于前端结构与样式的响应式图书展示页面。<br>
                     <ul>
-                        <li>负责学校学生活动，各种会议安排、组织、文体活动安排等。</li>
-                        <li>组织社团的各种大会、团队培训、招新团员等活动。</li>
-                        <li>担任校办公室行政助理，负责收发学校传真复印、扫描文档、收发信件、文件等。</li>
-                        <li>多次荣获班级奖学金、国家奖学金、国家励志奖学金；担任2届院学生会副主席。</li>
+                        <li>结构：使用 header、nav、section 等语义化标签构建清晰、专业的页面骨架。</li>
+                        <li>样式：使用 CSS Flexbox 实现精准灵活的页面布局，确保不同屏幕尺寸下良好显示。</li>
+                        <li>细节：精心处理图片、边框、阴影、间距等视觉细节，打造高质量页面效果。</li>
                     </ul>
                 </div>
             </div>
-            
-            <!-- 实习经历 -->
+
+            <!-- ============== 职业技能 ============== -->
             <div class="section">
-                <h2 class="section-title">实习经历</h2>
-                <div class="experience-item">
-                    <h4>浙江XX信息科技有限公司 - 市场营销实习生</h4>
-                    <p>20XX.6 - 20XX.8</p>
-                    <p>负责公司线上资源的销售工作（以开拓客户为主），公司主要资源以百度、小米、360、海信、爱奇艺客户等；实时了解行业的变化，跟踪客户的详细数据，为客户制定更完善的投放计划（合作过世纪佳缘、乐视、天猫等客户）。</p>
+                <div class="section-title">职业技能</div>
+                <div class="simple-box">
+                    <div class="skill-line"><strong>前端基础：</strong>熟练掌握 HTML5、CSS3、JavaScript</div>
+                    <div class="skill-line"><strong>核心能力：</strong>精通原生 JavaScript 进行 DOM 操作与事件处理，可实现页面动态交互</div>
+                    <div class="skill-line"><strong>工程化：</strong>能够使用 GitHub Pages 部署静态网站</div>
+                    <div class="skill-line"><strong>技术视野：</strong>了解 Java、Python 语言基础</div>
                 </div>
             </div>
-            
-            <!-- 职业技能 -->
+
+            <!-- ============== 自我评价 ============== -->
             <div class="section">
-                <h2 class="section-title">职业技能</h2>
-                <div class="skills-container">
-                    <span class="skill-tag">普通话一级甲等</span>
-                    <span class="skill-tag">英语六级（CET6）</span>
-                    <span class="skill-tag">全国计算机二级</span>
-                    <span class="skill-tag">Web开发</span>
-                    <span class="skill-tag">iOS开发</span>
-                    <span class="skill-tag">Android开发</span>
-                    <span class="skill-tag">C++编程</span>
-                    <span class="skill-tag">Java开发</span>
-                    <span class="skill-tag">PPT制作</span>
-                    <span class="skill-tag">Word文档</span>
-                    <span class="skill-tag">Excel表格</span>
-                </div>
-            </div>
-            
-            <!-- 自我评价 -->
-            <div class="section">
-                <h2 class="section-title">自我评价</h2>
-                <div class="self-evaluation">
-                    工作积极认真，细心负责，性格开朗，善于学习，待人热情，有很强的事业心、进取心。具有优秀的思维、沟通和学习能力，热爱团队工作。对于工作有着自己的经验理解，善于与人沟通，能够分享工作中的经验。
+                <div class="section-title">自我评价</div>
+                <div class="simple-box">
+                    我是一名踏实肯学的应届生，前端基础扎实，能高质量完成静态页面开发。我的优势在于极强的动手能力与认真态度——我已独立将个人简历项目部署上线，验证了从编写代码到呈现成果的完整执行力。<br><br>
+                    我正在积极学习 JavaScript 以实现更复杂的交互，渴望一个实习机会，从基础工作做起，用扎实的代码能力为团队贡献力量，并实现快速成长。
                 </div>
             </div>
         </div>
     </div>
-    
-    <script>
-        // 添加一些交互效果
-        document.addEventListener('DOMContentLoaded', function() {
-            // 技能标签点击效果
-            const skillTags = document.querySelectorAll('.skill-tag');
-            skillTags.forEach(tag => {
-                tag.addEventListener('click', function() {
-                    this.style.transform = 'scale(0.95)';
-                    setTimeout(() => {
-                        this.style.transform = 'scale(1)';
-                    }, 100);
-                });
-            });
-            
-            // 滚动动画效果
-            const sections = document.querySelectorAll('.section');
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.style.opacity = '1';
-                        entry.target.style.transform = 'translateY(0)';
-                    }
-                });
-            }, {
-                threshold: 0.1
-            });
-            
-            sections.forEach(section => {
-                section.style.opacity = '0';
-                section.style.transform = 'translateY(20px)';
-                section.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-                observer.observe(section);
-            });
-        });
-    </script>
 </body>
 </html>
