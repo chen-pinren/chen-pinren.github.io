@@ -18,7 +18,7 @@
             margin: 0 auto;
             background: #fff;
             border-radius: 8px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
             overflow: hidden;
         }
 
@@ -28,6 +28,7 @@
             color: #fff;
             text-align: center;
             padding: 30px 0;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
         }
         .resume-header h1 {
             margin: 0;
@@ -42,7 +43,7 @@
             position: relative;
         }
 
-        /* 证件照 - 直接放右边，上压一点分界线 */
+        /* 证件照 */
         .id-photo {
             position: absolute;
             top: -25px;
@@ -51,7 +52,7 @@
             height: 150px;
             border: 3px solid #fff;
             border-radius: 6px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+            box-shadow: 0 6px 15px rgba(0,0,0,0.2);
             overflow: hidden;
             background: #fff;
         }
@@ -79,12 +80,13 @@
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 12px;
-            padding-right: 140px; /* 给照片留空 */
+            padding-right: 140px;
         }
         .info-item {
             background: #f5f7fa;
             padding: 8px 10px;
             border-radius: 4px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
         }
         .info-item strong {
             color: #1a237e;
@@ -97,6 +99,11 @@
             padding: 15px;
             border-radius: 4px;
             line-height: 1.8;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+            margin-bottom: 15px;
+        }
+        .simple-box:last-child {
+            margin-bottom: 0;
         }
         .simple-box ul {
             margin: 8px 0 0 20px;
@@ -108,6 +115,35 @@
         }
         .skill-line strong {
             color: #1a237e;
+        }
+
+        /* 项目链接样式 - 增强版 */
+        .project-link {
+            color: #1a237e;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            display: inline-block;
+            padding: 8px 15px;
+            background: #e3f2fd;
+            border-radius: 6px;
+            border: 2px solid #1a237e;
+            box-shadow: 0 3px 5px rgba(0,0,0,0.1);
+        }
+        .project-link:hover {
+            color: #fff;
+            background: #1a237e;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 10px rgba(0,0,0,0.15);
+        }
+
+        /* 项目链接提示文字 */
+        .link-hint {
+            display: inline-block;
+            margin-left: 10px;
+            font-size: 13px;
+            color: #5c6bc0;
+            font-style: italic;
         }
 
         /* 小屏幕简化 */
@@ -122,6 +158,15 @@
                 right: 20px;
                 top: -20px;
             }
+            .project-link {
+                padding: 6px 12px;
+                font-size: 15px;
+            }
+            .link-hint {
+                display: block;
+                margin-left: 0;
+                margin-top: 5px;
+            }
         }
     </style>
 </head>
@@ -134,13 +179,12 @@
 
         <!-- 主体内容 -->
         <div class="resume-content">
-            <!-- ============== 证件照（只换 src 即可） ============== -->
+            <!-- 证件照 -->
             <div class="id-photo">
-                <!-- 把你的照片地址填到 src 里 -->
                 <img src="77777.jpg" alt="证件照">
             </div>
 
-            <!-- ============== 基本信息 ============== -->
+            <!-- 基本信息 -->
             <div class="section">
                 <div class="section-title">基本信息</div>
                 <div class="info-grid">
@@ -154,7 +198,7 @@
                 </div>
             </div>
 
-            <!-- ============== 教育背景 ============== -->
+            <!-- 教育背景 -->
             <div class="section">
                 <div class="section-title">教育背景</div>
                 <div class="simple-box">
@@ -163,33 +207,47 @@
                 </div>
             </div>
 
-            <!-- ============== 项目经验 ============== -->
+            <!-- 项目经验 -->
             <div class="section">
                 <div class="section-title">项目经验</div>
+                
+                <!-- 个人在线简历网站项目 -->
                 <div class="simple-box">
-                    <b>在线图书订购页面（课程实训项目）</b><br>
+                    <b>个人在线简历网站（个人项目）</b><br>
                     技术栈：HTML5 + CSS3<br>
-                    项目描述：一个专注于前端结构与样式的响应式图书展示页面。<br>
+                    项目描述：成功通过GitHub Pages将项目部署至公网
+                </div>
+                
+                <!-- 待办事项管理应用项目 -->
+                <div class="simple-box">
+                    <a href="https://chen-pinren.github.io/list/" target="_blank" class="project-link">待办事项管理应用（个人项目）</a>
+                    <span class="link-hint">(点击查看在线演示)</span><br>
+                    技术栈：HTML5 + CSS3 + 原生JavaScript<br>
+                    项目描述：一个功能完整的待办事项管理应用，实现了任务的增删改查和状态切换。<br>
                     <ul>
-                        <li>结构：使用 header、nav、section 等语义化标签构建清晰、专业的页面骨架。</li>
-                        <li>样式：使用 CSS Flexbox 实现精准灵活的页面布局，确保不同屏幕尺寸下良好显示。</li>
-                        <li>细节：精心处理图片、边框、阴影、间距等视觉细节，打造高质量页面效果。</li>
+                        <li>使用事件委托处理动态任务交互，理解事件冒泡机制</li>
+                        <li>基于localStorage实现数据持久化，掌握JSON序列化应用</li>
+                        <li>实现任务的完整操作流程（添加、删除、状态切换）</li>
+                        <li>运用Flexbox布局与媒体查询，构建响应式界面</li>
                     </ul>
+                    学习收获：通过该项目深入理解了DOM操作、事件处理、数据存储等前端基础概念，为学习框架打下坚实基础。
                 </div>
             </div>
 
-            <!-- ============== 职业技能 ============== -->
+            <!-- 职业技能 -->
             <div class="section">
                 <div class="section-title">职业技能</div>
                 <div class="simple-box">
                     <div class="skill-line"><strong>前端基础：</strong>熟练掌握 HTML5、CSS3、JavaScript</div>
                     <div class="skill-line"><strong>核心能力：</strong>精通原生 JavaScript 进行 DOM 操作与事件处理，可实现页面动态交互</div>
+                    <div class="skill-line"><strong>布局技术：</strong>Flexbox弹性布局、媒体查询响应式设计</div>
+                    <div class="skill-line"><strong>数据存储：</strong>localStorage、JSON序列化</div>
                     <div class="skill-line"><strong>工程化：</strong>能够使用 GitHub Pages 部署静态网站</div>
                     <div class="skill-line"><strong>技术视野：</strong>了解 Java、Python 语言基础</div>
                 </div>
             </div>
 
-            <!-- ============== 自我评价 ============== -->
+            <!-- 自我评价 -->
             <div class="section">
                 <div class="section-title">自我评价</div>
                 <div class="simple-box">
